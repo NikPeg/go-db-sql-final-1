@@ -22,11 +22,11 @@ func (s ParcelStore) Add(p Parcel) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	res, err = res.LastInsertId()
-	if err != nil {
-        return 0, err
+	last, new_err := res.LastInsertId()
+	if new_err != nil {
+        return 0, new_err
     }
-	return int(res), nil
+	return int(last), nil
 }
 
 func (s ParcelStore) Get(number int) (Parcel, error) {
@@ -60,9 +60,10 @@ func (s ParcelStore) GetByClient(client int) ([]Parcel, error) {
 	}
     err = rows.Err()
     if err != nil {
-        return res, err
+        var empty []Parcel
+        return empty, err
     }
-	return {}, nil
+	return res, nil
 }
 
 func (s ParcelStore) SetStatus(number int, status string) error {
