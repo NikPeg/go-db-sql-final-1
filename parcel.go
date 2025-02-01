@@ -22,8 +22,11 @@ func (s ParcelStore) Add(p Parcel) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	last, _ := res.LastInsertId()
-	return int(last), err
+	res, err = res.LastInsertId()
+	if err != nil {
+        return 0, err
+    }
+	return int(res), nil
 }
 
 func (s ParcelStore) Get(number int) (Parcel, error) {
