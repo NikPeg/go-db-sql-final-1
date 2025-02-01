@@ -50,7 +50,7 @@ func TestAddGetDelete(t *testing.T) {
 	// get
 	p, err := store.Get(id)
 	require.NoError(t, err)
-	assert.Equal(t, p, parcel)
+	assert.Equal(t, parcel, p)
 
 	// delete
 	err = store.Delete(id)
@@ -119,7 +119,7 @@ func TestSetStatus(t *testing.T) {
 	// check
 	p, err := store.Get(id)
 	require.NoError(t, err)
-	assert.Equal(t, p.Status, newStatus)
+	assert.Equal(t, newStatus, p.Status)
 
 	// delete
 	err = store.Delete(id)
@@ -172,7 +172,7 @@ func TestGetByClient(t *testing.T) {
 
 	// check
 	for _, parcel := range storedParcels {
-		assert.Equal(t, parcel, parcelMap[parcel.Number])
+		assert.Equal(t, parcelMap[parcel.Number], parcel)
 
 		err = store.Delete(parcel.Number)
 		require.NoError(t, err)
