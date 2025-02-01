@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -172,8 +173,8 @@ func TestGetByClient(t *testing.T) {
 
 	// check
 	for _, parcel := range storedParcels {
-		_, ok := myMap["foo"]
-		assert.True(ok)
+		_, ok := parcelMap[parcel.Number]
+		assert.True(t, ok)
 		assert.Equal(t, parcelMap[parcel.Number], parcel)
 
 		err = store.Delete(parcel.Number)
