@@ -24,8 +24,8 @@ func (s ParcelStore) Add(p Parcel) (int, error) {
 	}
 	last, new_err := res.LastInsertId()
 	if new_err != nil {
-        return 0, new_err
-    }
+		return 0, new_err
+	}
 	return int(last), nil
 }
 
@@ -48,7 +48,7 @@ func (s ParcelStore) GetByClient(client int) ([]Parcel, error) {
 	if err != nil {
 		return res, err
 	}
-    defer rows.Close()
+	defer rows.Close()
 
 	for rows.Next() {
 		p := Parcel{}
@@ -58,11 +58,11 @@ func (s ParcelStore) GetByClient(client int) ([]Parcel, error) {
 		}
 		res = append(res, p)
 	}
-    err = rows.Err()
-    if err != nil {
-        var empty []Parcel
-        return empty, err
-    }
+	err = rows.Err()
+	if err != nil {
+		var empty []Parcel
+		return empty, err
+	}
 	return res, nil
 }
 
