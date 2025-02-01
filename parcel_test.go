@@ -33,6 +33,11 @@ func getTestParcel() Parcel {
 func TestAddGetDelete(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db")
+	if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer db.Close()
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -59,6 +64,12 @@ func TestAddGetDelete(t *testing.T) {
 func TestSetAddress(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db")
+	if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer db.Close()
+
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -86,6 +97,12 @@ func TestSetAddress(t *testing.T) {
 func TestSetStatus(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db")
+	if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer db.Close()
+
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -113,6 +130,12 @@ func TestSetStatus(t *testing.T) {
 func TestGetByClient(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db")
+	if err != nil {
+        fmt.Println(err)
+        return
+    }
+    defer db.Close()
+
 	store := NewParcelStore(db)
 
 	parcels := []Parcel{
